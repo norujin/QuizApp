@@ -1,5 +1,6 @@
 package com.norujin.android.quizapp;
 
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,20 +64,8 @@ public class MainActivity extends AppCompatActivity {
         tryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                result.setText("");
-                score = 0;
-                totalQuestions = 0;
-                rate.setText( score + "/" + totalQuestions);
-
-                tryAgain.setVisibility(View.INVISIBLE);
-                answerButton1.setClickable(true);
-                answerButton2.setClickable(true);
-                answerButton3.setClickable(true);
-                answerButton4.setClickable(true);
-
-                newQuestion();
-
-                timeCountdown();
+                startActivity(new Intent(MainActivity.this,MainActivity.class));
+                finish();
 
             }
         });

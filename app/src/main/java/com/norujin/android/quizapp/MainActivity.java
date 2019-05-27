@@ -23,11 +23,15 @@ public class MainActivity extends AppCompatActivity {
     int locationOfRightAnswer;
     int score;
     int totalQuestions;
+    String check = "bty5";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         start = (ImageView) findViewById(R.id.startBtnId);
         tryAgain = (Button) findViewById(R.id.tryAgainBtnId);
@@ -44,6 +48,24 @@ public class MainActivity extends AppCompatActivity {
 
         gridLayout = (GridLayout) findViewById(R.id.answersGridLayoutId);
 
+        Intent intent = getIntent();
+
+        if (intent!= null)
+        check = intent.getStringExtra("try");
+
+        if (check.equals("1"))
+        {
+            start.setVisibility(View.INVISIBLE);
+
+            time.setVisibility(View.VISIBLE);
+            rate.setVisibility(View.VISIBLE);
+            question.setVisibility(View.VISIBLE);
+            gridLayout.setVisibility(View.VISIBLE);
+            result.setVisibility(View.VISIBLE);
+            timeCountdown();
+
+        }
+
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,11 +81,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         newQuestion();
 
         tryAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Intent intent=new Intent(MainActivity.this,MainActivity.class);
+                intent.putExtra("try","1");
+
                 startActivity(new Intent(MainActivity.this,MainActivity.class));
                 finish();
 

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     int locationOfRightAnswer;
     int score;
     int totalQuestions;
-    String check = "bty5";
+    String check;
 
 
     @Override
@@ -49,11 +49,9 @@ public class MainActivity extends AppCompatActivity {
         gridLayout = (GridLayout) findViewById(R.id.answersGridLayoutId);
 
         Intent intent = getIntent();
-
-        if (intent!= null)
         check = intent.getStringExtra("try");
 
-        if (check.equals("1"))
+        if (check != null && check.equals("1"))
         {
             start.setVisibility(View.INVISIBLE);
 
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent=new Intent(MainActivity.this,MainActivity.class);
                 intent.putExtra("try","1");
 
-                startActivity(new Intent(MainActivity.this,MainActivity.class));
+                startActivity(intent);
                 finish();
 
             }
